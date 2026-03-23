@@ -1,0 +1,9 @@
+description: "Template rendering produces identical output across adapters"
+
+variants:
+  builtin:
+    description: "Built-in {{expr}} interpolator"
+    implementations: [python, typescript]
+  mako:
+    description: "Mako template engine"
+    implementations: [python]

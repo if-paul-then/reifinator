@@ -1,0 +1,6 @@
+template_dir: ./templates
+output_dir: ./output
+
+content_generator:
+  extension: ".mako"
+  adapter: "reifinator.adapters.mako:MakoContentGenerator"

@@ -1,0 +1,42 @@
+{
+  "entities": [
+    {
+      "name": "Product",
+      "properties": [
+        { "name": "Id", "type": "int" },
+        { "name": "Name", "type": "string" },
+        { "name": "Price", "type": "decimal" },
+        { "name": "InStock", "type": "bool" }
+      ]
+    },
+    {
+      "name": "Order",
+      "properties": [
+        { "name": "Id", "type": "int" },
+        { "name": "CustomerName", "type": "string" },
+        { "name": "OrderDate", "type": "date" },
+        { "name": "Status", "type": "string" }
+      ]
+    },
+    {
+      "name": "OrderItem",
+      "properties": [
+        { "name": "Id", "type": "int" },
+        { "name": "Quantity", "type": "int" },
+        { "name": "UnitPrice", "type": "decimal" }
+      ],
+      "relationships": [
+        {
+          "name": "order",
+          "type": "belongs_to",
+          "target": "Order"
+        },
+        {
+          "name": "product",
+          "type": "belongs_to",
+          "target": "Product"
+        }
+      ]
+    }
+  ]
+}

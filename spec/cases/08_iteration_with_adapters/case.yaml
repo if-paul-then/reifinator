@@ -1,0 +1,9 @@
+description: "Context iteration with template rendering across adapters"
+
+variants:
+  builtin:
+    description: "Built-in interpolator with context iteration"
+    implementations: [python, typescript]
+  mako:
+    description: "Mako adapter with context iteration"
+    implementations: [python]
