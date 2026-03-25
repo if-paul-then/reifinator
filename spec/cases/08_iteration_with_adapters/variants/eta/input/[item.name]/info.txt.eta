@@ -1,0 +1,2 @@
+Name: <%= it.item.name %>
+Label: <%= it.item.label %>

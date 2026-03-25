@@ -1,0 +1,6 @@
+template_dir: ./templates-eta
+output_dir: ./output
+
+content_generator:
+  extension: ".eta"
+  adapter: "reifinator/adapters/eta:EtaContentGenerator"

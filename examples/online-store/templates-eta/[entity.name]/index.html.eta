@@ -1,0 +1,42 @@
+<% var name = it.entity.name; var props = it.entity.properties; var rels = it.entity.relationships || []; var all_entities = it.entity.all_entities; %><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= name %></title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <nav>
+        <strong>Online Store</strong>
+<% all_entities.forEach(function(e) { %>        <a href="../<%= e.name %>/index.html"><%= e.name %></a>
+<% }); %>    </nav>
+
+    <main>
+        <h1><%= name %></h1>
+
+        <h2>Properties</h2>
+        <table>
+            <thead>
+                <tr><th>Name</th><th>Type</th></tr>
+            </thead>
+            <tbody>
+<% props.forEach(function(prop) { %>                <tr><td><%= prop.name %></td><td><%= prop.type %></td></tr>
+<% }); %>            </tbody>
+        </table>
+
+<% if (rels.length > 0) { %>        <h2>Relationships</h2>
+        <table>
+            <thead>
+                <tr><th>Name</th><th>Type</th><th>Target</th></tr>
+            </thead>
+            <tbody>
+<% rels.forEach(function(rel) { %>                <tr>
+                    <td><%= rel.name %></td>
+                    <td><%= rel.type %></td>
+                    <td><a href="../<%= rel.target %>/index.html"><%= rel.target %></a></td>
+                </tr>
+<% }); %>            </tbody>
+        </table>
+<% } %>    </main>
+</body>
+</html>

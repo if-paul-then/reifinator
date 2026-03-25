@@ -10,3 +10,9 @@ variants:
   jinja2:
     description: "Jinja2 template engine"
     implementations: [python]
+  eta:
+    description: "Eta template engine"
+    implementations: [typescript]
+  nunjucks:
+    description: "Nunjucks template engine"
+    implementations: [typescript]

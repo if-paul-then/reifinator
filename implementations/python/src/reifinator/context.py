@@ -9,6 +9,9 @@ from typing import Any
 # Default context script filename for the Python implementation
 CONTEXT_SCRIPT_NAME = "_gen_context.py"
 
+# Context script filenames from other implementations (skipped, not loaded)
+OTHER_CONTEXT_SCRIPTS = {"_gen_context.js", "_gen_context.mjs", "_gen_context.ts"}
+
 
 def load_context_script(
     script_path: Path, parent_context: dict[str, Any]

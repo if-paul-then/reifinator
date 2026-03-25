@@ -76,10 +76,20 @@ reify generate [OPTIONS]
 
 ## Built-in Adapters
 
+### Python
+
 | Adapter | Extension | Install |
 |---------|-----------|---------|
 | Built-in interpolator | `.tpl` | included (always active) |
 | Mako | `.mako` | `pip install reifinator[mako]` |
 | Jinja2 | `.j2` | `pip install reifinator[jinja2]` |
+
+### TypeScript
+
+| Adapter | Extension | Install |
+|---------|-----------|---------|
+| Built-in interpolator | `.tpl` | included (always active) |
+| Eta | `.eta` | `npm install eta` |
+| Nunjucks | `.njk` | `npm install nunjucks` |
 
 The built-in `.tpl` interpolator is always available regardless of configuration. When a `content_generator` is configured, it is registered alongside the built-in.

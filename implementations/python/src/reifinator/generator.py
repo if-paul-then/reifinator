@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from reifinator.content import BaseContentGenerator, BuiltinInterpolator
-from reifinator.context import CONTEXT_SCRIPT_NAME, load_context_script
+from reifinator.context import CONTEXT_SCRIPT_NAME, OTHER_CONTEXT_SCRIPTS, load_context_script
 from reifinator.output import OutputDirectory
 from reifinator.resolution import (
     BracketResolver,
@@ -122,8 +122,12 @@ class Generator:
                 self._write_context_log(output_dir.path, idx, merged_ctx)
 
             for item in input_path.iterdir():
-                # Skip context scripts, cache dirs
-                if item.name == self.context_script_name or item.name in SKIP_NAMES:
+                # Skip context scripts (own and other implementations), cache dirs
+                if (
+                    item.name == self.context_script_name
+                    or item.name in OTHER_CONTEXT_SCRIPTS
+                    or item.name in SKIP_NAMES
+                ):
                     continue
 
                 resolution = self.placeholder_resolver.resolve(item.name, merged_ctx)

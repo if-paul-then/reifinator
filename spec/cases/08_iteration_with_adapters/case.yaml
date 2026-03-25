@@ -10,3 +10,9 @@ variants:
   jinja2:
     description: "Jinja2 adapter with context iteration"
     implementations: [python]
+  eta:
+    description: "Eta adapter with context iteration"
+    implementations: [typescript]
+  nunjucks:
+    description: "Nunjucks adapter with context iteration"
+    implementations: [typescript]

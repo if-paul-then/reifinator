@@ -1,0 +1,3 @@
+content_generator:
+  extension: ".eta"
+  adapter: "reifinator/adapters/eta:EtaContentGenerator"

@@ -1,0 +1,6 @@
+template_dir: ./templates-nunjucks
+output_dir: ./output
+
+content_generator:
+  extension: ".njk"
+  adapter: "reifinator/adapters/nunjucks:NunjucksContentGenerator"
