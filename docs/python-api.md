@@ -165,6 +165,22 @@ gen.run()
 
 The Mako adapter requires `mako` to be installed (`pip install reifinator[mako]`).
 
+## Using the Jinja2 Adapter
+
+```python
+from reifinator import Generator
+from reifinator.adapters.jinja2 import Jinja2ContentGenerator
+
+gen = Generator(
+    template_dir="./templates",
+    output_dir="./output",
+    content_generators=[Jinja2ContentGenerator(template_dir="./templates")],
+)
+gen.run()
+```
+
+The Jinja2 adapter requires `jinja2` to be installed (`pip install reifinator[jinja2]`).
+
 ## Error Handling
 
 ```python

@@ -1,0 +1,54 @@
+{%- set name = entity.name -%}
+{%- set props = entity.properties -%}
+{%- set rels = entity.get("relationships", []) -%}
+{%- set all_entities = entity.all_entities -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ name }}</title>
+    <link rel="stylesheet" href="../static/styles.css">
+</head>
+<body>
+    <nav>
+        <strong>Online Store</strong>
+{% for e in all_entities %}
+        <a href="../{{ e.name }}/index.html">{{ e.name }}</a>
+{% endfor %}
+    </nav>
+
+    <main>
+        <h1>{{ name }}</h1>
+
+        <h2>Properties</h2>
+        <table>
+            <thead>
+                <tr><th>Name</th><th>Type</th></tr>
+            </thead>
+            <tbody>
+{% for prop in props %}
+                <tr><td>{{ prop.name }}</td><td>{{ prop.type }}</td></tr>
+{% endfor %}
+            </tbody>
+        </table>
+
+{% if rels %}
+        <h2>Relationships</h2>
+        <table>
+            <thead>
+                <tr><th>Name</th><th>Type</th><th>Target</th></tr>
+            </thead>
+            <tbody>
+{% for rel in rels %}
+                <tr>
+                    <td>{{ rel.name }}</td>
+                    <td>{{ rel.type }}</td>
+                    <td><a href="../{{ rel.target }}/index.html">{{ rel.target }}</a></td>
+                </tr>
+{% endfor %}
+            </tbody>
+        </table>
+{% endif %}
+    </main>
+</body>
+</html>

@@ -80,6 +80,6 @@ reify generate [OPTIONS]
 |---------|-----------|---------|
 | Built-in interpolator | `.tpl` | included (always active) |
 | Mako | `.mako` | `pip install reifinator[mako]` |
-| Jinja2 | `.j2` | *Planned — not yet implemented.* |
+| Jinja2 | `.j2` | `pip install reifinator[jinja2]` |
 
 The built-in `.tpl` interpolator is always available regardless of configuration. When a `content_generator` is configured, it is registered alongside the built-in.

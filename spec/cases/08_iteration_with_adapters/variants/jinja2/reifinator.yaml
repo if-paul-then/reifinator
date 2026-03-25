@@ -1,0 +1,3 @@
+content_generator:
+  extension: ".j2"
+  adapter: "reifinator.adapters.jinja2:Jinja2ContentGenerator"

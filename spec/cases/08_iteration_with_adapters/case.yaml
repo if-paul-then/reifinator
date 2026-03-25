@@ -7,3 +7,6 @@ variants:
   mako:
     description: "Mako adapter with context iteration"
     implementations: [python]
+  jinja2:
+    description: "Jinja2 adapter with context iteration"
+    implementations: [python]

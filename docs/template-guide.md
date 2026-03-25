@@ -203,6 +203,32 @@ content_generator:
   adapter: "reifinator.adapters.jinja2:Jinja2ContentGenerator"
 ```
 
+Jinja2 syntax:
+
+```jinja
+{# Variable substitution #}
+{{ entity.name }}
+
+{# Control structures #}
+{% for prop in entity.properties %}
+    {{ prop.name }}: {{ prop.type }}
+{% endfor %}
+
+{% if prop.nullable %}
+    {# nullable #}
+{% endif %}
+```
+
+#### Filters
+
+Jinja2 built-in filters work as expected:
+
+```jinja
+{{ entity.name | lower }}
+{{ entity.name | upper }}
+{{ items | join(", ") }}
+```
+
 ### Custom Adapters
 
 See [Python API Reference](python-api.md) for how to implement and register custom template engine adapters.

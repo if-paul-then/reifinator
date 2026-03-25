@@ -7,3 +7,6 @@ variants:
   mako:
     description: "Mako template engine"
     implementations: [python]
+  jinja2:
+    description: "Jinja2 template engine"
+    implementations: [python]
