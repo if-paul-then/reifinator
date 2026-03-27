@@ -1,3 +1,2 @@
-content_generator:
-  extension: ".mako"
-  adapter: "reifinator.adapters.mako:MakoContentGenerator"
+content_generators:
+  - adapter: "reifinator.adapters.mako:MakoContentGenerator"

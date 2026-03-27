@@ -6,7 +6,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from reifinator.config import DEFAULT_CONFIG_FILENAME, load_config, load_content_generator
+from reifinator.config import DEFAULT_CONFIG_FILENAME, load_config, load_content_generators
 from reifinator.generator import Generator
 
 
@@ -69,11 +69,7 @@ def _run_generate(args: argparse.Namespace) -> None:
         sys.exit(1)
 
     # Load content generators from config
-    content_generators = []
-    gen_config = config.get("content_generator")
-    if gen_config and "adapter" in gen_config:
-        adapter_cls = load_content_generator(gen_config["adapter"])
-        content_generators.append(adapter_cls(template_dir))
+    content_generators = load_content_generators(config, template_dir=template_dir)
 
     if args.dry_run:
         print("Dry run mode — generation not yet implemented for dry run.")

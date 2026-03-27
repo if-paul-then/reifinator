@@ -1,6 +1,5 @@
 template_dir: ./templates-jinja2
 output_dir: ./output
 
-content_generator:
-  extension: ".j2"
-  adapter: "reifinator.adapters.jinja2:Jinja2ContentGenerator"
+content_generators:
+  - adapter: "reifinator.adapters.jinja2:Jinja2ContentGenerator"

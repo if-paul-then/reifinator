@@ -7,13 +7,23 @@ import { Eta } from "eta";
 import { BaseContentGenerator } from "../content.js";
 import type { Content } from "../output.js";
 
+export interface EtaContentGeneratorOptions {
+  templateDir?: string;
+  extension?: string;
+}
+
 export class EtaContentGenerator extends BaseContentGenerator {
-  readonly extension = ".eta";
+  readonly extension: string;
   private readonly eta: Eta;
 
-  constructor(templateDir: string) {
+  constructor(options: EtaContentGeneratorOptions = {}) {
     super();
-    this.eta = new Eta({ views: templateDir, autoEscape: false, autoTrim: false });
+    this.extension = options.extension ?? ".eta";
+    this.eta = new Eta({
+      views: options.templateDir,
+      autoEscape: false,
+      autoTrim: false,
+    });
   }
 
   generate(

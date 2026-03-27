@@ -1,2 +1,3 @@
 content_generators:
   - adapter: "reifinator.adapters.jinja2:Jinja2ContentGenerator"
+    extension: ".html"

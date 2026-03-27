@@ -147,9 +147,8 @@ Install: `pip install reifinator[mako]`
 Configure in `reifinator.yaml`:
 
 ```yaml
-content_generator:
-  extension: ".mako"
-  adapter: "reifinator.adapters.mako:MakoContentGenerator"
+content_generators:
+  - adapter: "reifinator.adapters.mako:MakoContentGenerator"
 ```
 
 Mako syntax:
@@ -198,9 +197,8 @@ Install: `pip install reifinator[jinja2]`
 Configure in `reifinator.yaml`:
 
 ```yaml
-content_generator:
-  extension: ".j2"
-  adapter: "reifinator.adapters.jinja2:Jinja2ContentGenerator"
+content_generators:
+  - adapter: "reifinator.adapters.jinja2:Jinja2ContentGenerator"
 ```
 
 Jinja2 syntax:

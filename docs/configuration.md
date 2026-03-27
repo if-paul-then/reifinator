@@ -17,10 +17,9 @@ output_dir: ./output
 # output_stage_dir: ./generated
 # output_dest_dir: ../../my-project
 
-# Content generator (template engine adapter)
-content_generator:
-  extension: ".mako"                                      # template file extension
-  adapter: "reifinator.adapters.mako:MakoContentGenerator" # module:ClassName
+# Content generators (template engine adapters)
+content_generators:
+  - adapter: "reifinator.adapters.mako:MakoContentGenerator"
 
 # Write debug log files alongside output (default: false)
 debug: false
@@ -34,9 +33,38 @@ debug: false
 | `output_dir` | string | Either this or stage/dest | — | Output directory (1-stage mode) |
 | `output_stage_dir` | string | Pair with `output_dest_dir` | — | Staging directory (2-stage mode) |
 | `output_dest_dir` | string | Pair with `output_stage_dir` | — | Destination directory (2-stage mode) |
-| `content_generator.extension` | string | No | — | Template file extension (e.g., `".mako"`) |
-| `content_generator.adapter` | string | No | — | Content generator class path (`module:ClassName`) |
+| `content_generators` | list | No | `[]` | List of content generator entries (see below) |
 | `debug` | boolean | No | `false` | Write debug log files |
+
+### Content Generator Entries
+
+Each entry in `content_generators` has these fields:
+
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| `adapter` | string | Yes | — | Adapter class path (`module:ClassName`) |
+| `extension` | string | No | from adapter class | File extension that routes to this adapter. Defaults to the adapter's built-in extension (e.g., `.mako`). |
+
+### Extension Override
+
+Each adapter declares a default file extension (e.g., `.mako`, `.j2`, `.eta`). The `extension` field in config overrides this default, allowing you to map a different extension to the adapter:
+
+```yaml
+# Use .html files as Mako templates instead of .mako
+content_generators:
+  - adapter: "reifinator.adapters.mako:MakoContentGenerator"
+    extension: ".html"
+```
+
+### Multiple Adapters
+
+Multiple adapters can be configured to use different template engines in the same project:
+
+```yaml
+content_generators:
+  - adapter: "reifinator.adapters.mako:MakoContentGenerator"
+  - adapter: "reifinator.adapters.jinja2:Jinja2ContentGenerator"
+```
 
 ## Output Modes
 
@@ -78,18 +106,18 @@ reify generate [OPTIONS]
 
 ### Python
 
-| Adapter | Extension | Install |
-|---------|-----------|---------|
+| Adapter | Default Extension | Install |
+|---------|-------------------|---------|
 | Built-in interpolator | `.tpl` | included (always active) |
 | Mako | `.mako` | `pip install reifinator[mako]` |
 | Jinja2 | `.j2` | `pip install reifinator[jinja2]` |
 
 ### TypeScript
 
-| Adapter | Extension | Install |
-|---------|-----------|---------|
+| Adapter | Default Extension | Install |
+|---------|-------------------|---------|
 | Built-in interpolator | `.tpl` | included (always active) |
 | Eta | `.eta` | `npm install eta` |
 | Nunjucks | `.njk` | `npm install nunjucks` |
 
-The built-in `.tpl` interpolator is always available regardless of configuration. When a `content_generator` is configured, it is registered alongside the built-in.
+The built-in `.tpl` interpolator is always available regardless of configuration. When content generators are configured, they are registered alongside the built-in.

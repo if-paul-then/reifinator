@@ -5,7 +5,7 @@
  */
 
 import { Command } from "commander";
-import { loadConfig, loadContentGenerator } from "./config.js";
+import { loadConfig, loadContentGenerators } from "./config.js";
 import { Generator } from "./generator.js";
 
 const program = new Command();
@@ -56,12 +56,7 @@ program
     }
 
     // Load content generators from config
-    const contentGenerators = [];
-    const genConfig = config.content_generator;
-    if (genConfig?.adapter) {
-      const AdapterCls = await loadContentGenerator(genConfig.adapter);
-      contentGenerators.push(new AdapterCls(templateDir));
-    }
+    const contentGenerators = await loadContentGenerators(config, templateDir);
 
     if (opts.dryRun) {
       console.log("Dry run mode — generation not yet implemented for dry run.");

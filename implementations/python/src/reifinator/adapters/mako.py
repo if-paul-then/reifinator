@@ -17,8 +17,10 @@ class MakoContentGenerator(BaseContentGenerator):
 
     extension = ".mako"
 
-    def __init__(self, template_dir: str | Path | None = None):
+    def __init__(self, *, template_dir: str | Path | None = None, extension: str | None = None):
         self.template_dir = Path(template_dir) if template_dir else None
+        if extension is not None:
+            self.extension = extension
 
     def generate(self, template_path: Path, context: dict[str, Any]) -> Content:
         try:

@@ -1,0 +1,27 @@
+description: "Extension override — adapters work with default and overridden file extensions"
+
+variants:
+  mako-default:
+    description: "Mako with default .mako extension"
+    implementations: [python]
+  mako-override:
+    description: "Mako with .html extension override"
+    implementations: [python]
+  jinja2-default:
+    description: "Jinja2 with default .j2 extension"
+    implementations: [python]
+  jinja2-override:
+    description: "Jinja2 with .html extension override"
+    implementations: [python]
+  eta-default:
+    description: "Eta with default .eta extension"
+    implementations: [typescript]
+  eta-override:
+    description: "Eta with .html extension override"
+    implementations: [typescript]
+  nunjucks-default:
+    description: "Nunjucks with default .njk extension"
+    implementations: [typescript]
+  nunjucks-override:
+    description: "Nunjucks with .html extension override"
+    implementations: [typescript]

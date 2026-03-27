@@ -118,9 +118,8 @@ template_dir: ./templates
 output_dir: ./output
 
 # Optional: use a full template engine instead of the built-in interpolator
-content_generator:
-  extension: ".mako"
-  adapter: "reifinator.adapters.mako:MakoContentGenerator"
+content_generators:
+  - adapter: "reifinator.adapters.mako:MakoContentGenerator"
 ```
 
 See [docs/configuration.md](docs/configuration.md) for the full configuration reference including 2-stage output.

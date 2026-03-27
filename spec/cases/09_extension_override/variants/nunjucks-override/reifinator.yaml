@@ -1,2 +1,3 @@
 content_generators:
   - adapter: "reifinator/adapters/nunjucks:NunjucksContentGenerator"
+    extension: ".html"

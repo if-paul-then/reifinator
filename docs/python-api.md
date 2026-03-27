@@ -86,7 +86,7 @@ Custom adapters return `Content` from their `generate()` method.
 
 ## Writing a Custom Adapter
 
-Implement `BaseContentGenerator`:
+Implement `BaseContentGenerator`. Adapters use keyword-only constructor arguments:
 
 ```python
 from pathlib import Path
@@ -94,7 +94,12 @@ from typing import Any
 from reifinator import BaseContentGenerator, Content
 
 class MyAdapter(BaseContentGenerator):
-    extension = ".myext"  # files ending in this are routed to this adapter
+    extension = ".myext"  # default extension — files ending in this are routed to this adapter
+
+    def __init__(self, *, template_dir=None, extension=None):
+        self.template_dir = Path(template_dir) if template_dir else None
+        if extension is not None:
+            self.extension = extension  # override the default
 
     def generate(self, template_path: Path, context: dict[str, Any]) -> Content:
         text = template_path.read_text()
@@ -114,6 +119,21 @@ gen.run()
 ```
 
 The built-in `.tpl` interpolator is always registered alongside any custom adapters. You can use both `.tpl` and `.myext` files in the same template tree.
+
+### Extension Override
+
+Override the default extension at instantiation:
+
+```python
+# Route .html files through Mako instead of .mako files
+gen = Generator(
+    template_dir="./templates",
+    output_dir="./output",
+    content_generators=[MakoContentGenerator(template_dir="./templates", extension=".html")],
+)
+```
+
+When using a config file, the `extension` field in a `content_generators` entry achieves the same result.
 
 ## Custom Placeholder Resolver
 

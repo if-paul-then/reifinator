@@ -3,19 +3,26 @@
  */
 
 import { readFileSync } from "node:fs";
-import { dirname } from "node:path";
 import nunjucks from "nunjucks";
 import { BaseContentGenerator } from "../content.js";
 import type { Content } from "../output.js";
 
+export interface NunjucksContentGeneratorOptions {
+  templateDir?: string;
+  extension?: string;
+}
+
 export class NunjucksContentGenerator extends BaseContentGenerator {
-  readonly extension = ".njk";
+  readonly extension: string;
   private readonly env: nunjucks.Environment;
 
-  constructor(templateDir: string) {
+  constructor(options: NunjucksContentGeneratorOptions = {}) {
     super();
+    this.extension = options.extension ?? ".njk";
     this.env = new nunjucks.Environment(
-      new nunjucks.FileSystemLoader(templateDir),
+      options.templateDir
+        ? new nunjucks.FileSystemLoader(options.templateDir)
+        : undefined,
       { autoescape: false },
     );
   }

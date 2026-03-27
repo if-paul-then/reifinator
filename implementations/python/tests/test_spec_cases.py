@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 from reifinator import Generator, UnresolvedExpressionsError
-from reifinator.config import load_config, load_content_generator
+from reifinator.config import load_config, load_content_generators
 from tests.conftest import SPEC_CASES, SpecCase
 
 
@@ -60,10 +60,7 @@ def _build_generator(spec_case: SpecCase, output_dir: Path) -> Generator:
 
     if spec_case.config_path:
         config = load_config(spec_case.config_path)
-        gen_config = config.get("content_generator")
-        if gen_config and "adapter" in gen_config:
-            adapter_cls = load_content_generator(gen_config["adapter"])
-            content_generators.append(adapter_cls(template_dir=spec_case.input_dir))
+        content_generators = load_content_generators(config, template_dir=spec_case.input_dir)
 
     return Generator(
         template_dir=spec_case.input_dir,

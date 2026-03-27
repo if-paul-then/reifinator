@@ -11,21 +11,13 @@ import { describe, it, expect } from "vitest";
 import { Generator } from "../src/generator.js";
 import { UnresolvedExpressionsError } from "../src/resolution.js";
 import type { BaseContentGenerator } from "../src/content.js";
-import { loadConfig } from "../src/config.js";
-import { EtaContentGenerator } from "../src/adapters/eta.js";
-import { NunjucksContentGenerator } from "../src/adapters/nunjucks.js";
+import { loadConfig, loadContentGenerators } from "../src/config.js";
 import {
   loadSpecCases,
   testId,
   expectsError,
   type SpecCase,
 } from "./spec-loader.js";
-
-/** Map of adapter class names to their constructors for test loading. */
-const ADAPTER_MAP: Record<string, new (templateDir: string) => BaseContentGenerator> = {
-  EtaContentGenerator,
-  NunjucksContentGenerator,
-};
 
 const SPEC_CASES = loadSpecCases();
 
@@ -94,19 +86,11 @@ async function buildGenerator(
   specCase: SpecCase,
   outputDir: string,
 ): Promise<Generator> {
-  const contentGenerators = [];
+  let contentGenerators: BaseContentGenerator[] = [];
 
   if (specCase.configPath) {
     const config = loadConfig(specCase.configPath);
-    const genConfig = config.content_generator;
-    if (genConfig?.adapter) {
-      const className = genConfig.adapter.split(":")[1];
-      const AdapterCls = ADAPTER_MAP[className];
-      if (!AdapterCls) {
-        throw new Error(`Unknown adapter class: ${className}`);
-      }
-      contentGenerators.push(new AdapterCls(specCase.inputDir));
-    }
+    contentGenerators = await loadContentGenerators(config, specCase.inputDir);
   }
 
   return new Generator({
