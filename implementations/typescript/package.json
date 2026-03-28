@@ -38,5 +38,15 @@
   "engines": {
     "node": ">=20.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "author": "Paul Steyn <if.paul.then@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/if-paul-then/reifinator.git"
+  },
+  "homepage": "https://github.com/if-paul-then/reifinator",
+  "bugs": {
+    "url": "https://github.com/if-paul-then/reifinator/issues"
+  },
+  "keywords": ["code-generation", "template", "scaffolding", "generator", "eta", "nunjucks"]
 }

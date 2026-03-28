@@ -28,6 +28,9 @@ node_modules/
 # Generated output directories (spec test runs, example outputs)
 **/output/
 
+# Internal planning (not published)
+backlog/
+
 # =============================================================================
 # OS files
 # =============================================================================
