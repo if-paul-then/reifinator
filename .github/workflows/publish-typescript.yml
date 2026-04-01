@@ -1,0 +1,35 @@
+name: Publish TypeScript to npm
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    name: Build and publish to npm
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: npm
+          cache-dependency-path: implementations/typescript/package-lock.json
+
+      - name: Install dependencies
+        working-directory: implementations/typescript
+        run: npm ci
+
+      - name: Build
+        working-directory: implementations/typescript
+        run: npm run build
+
+      - name: Publish to npm
+        working-directory: implementations/typescript
+        run: npm publish
