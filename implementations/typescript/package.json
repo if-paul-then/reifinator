@@ -1,6 +1,6 @@
 {
   "name": "reifinator",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Template-structure-driven code and directory generator",
   "type": "module",
   "main": "./dist/index.js",
