@@ -1,12 +1,12 @@
 {
   "name": "reifinator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Template-structure-driven code and directory generator",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "reify": "./dist/cli.js"
+    "reify": "dist/cli.js"
   },
   "scripts": {
     "build": "tsup",
@@ -42,11 +42,18 @@
   "author": "Paul Steyn <if.paul.then@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/if-paul-then/reifinator.git"
+    "url": "git+https://github.com/if-paul-then/reifinator.git"
   },
   "homepage": "https://github.com/if-paul-then/reifinator",
   "bugs": {
     "url": "https://github.com/if-paul-then/reifinator/issues"
   },
-  "keywords": ["code-generation", "template", "scaffolding", "generator", "eta", "nunjucks"]
+  "keywords": [
+    "code-generation",
+    "template",
+    "scaffolding",
+    "generator",
+    "eta",
+    "nunjucks"
+  ]
 }
