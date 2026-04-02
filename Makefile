@@ -1,4 +1,4 @@
-.PHONY: test-python test-typescript test-all check-parity lint help setup-python setup-typescript setup-all build-python publish-testpypi publish-python build-typescript publish-typescript-dry-run publish-typescript
+.PHONY: test-python test-typescript test-all check-parity lint help setup-python setup-typescript setup-all build-python build-typescript publish-typescript-dry-run
 
 PYTHON_DIR = implementations/python
 TS_DIR = implementations/typescript
@@ -31,17 +31,8 @@ lint: ## Run linters across all implementations
 build-python: ## Build Python distribution packages (sdist + wheel)
 	cd $(PYTHON_DIR) && rm -rf dist/ && .venv/bin/python -m build
 
-publish-testpypi: build-python ## Build and publish to TestPyPI
-	cd $(PYTHON_DIR) && .venv/bin/twine upload --repository testpypi dist/*
-
-publish-python: build-python ## Build and publish to PyPI
-	cd $(PYTHON_DIR) && .venv/bin/twine upload dist/*
-
 build-typescript: ## Build TypeScript distribution
 	cd $(TS_DIR) && npm run build
 
 publish-typescript-dry-run: build-typescript ## Build and dry-run npm publish (verify package contents)
 	cd $(TS_DIR) && npm publish --dry-run
-
-publish-typescript: build-typescript ## Build and publish to npm
-	cd $(TS_DIR) && npm publish
